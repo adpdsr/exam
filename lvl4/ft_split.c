@@ -6,7 +6,7 @@
 /*   By: adu-pelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:46:14 by adu-pelo          #+#    #+#             */
-/*   Updated: 2016/01/26 14:24:12 by adu-pelo         ###   ########.fr       */
+/*   Updated: 2016/02/01 10:23:58 by adu-pelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ char 	**ft_split(char *str)
 		if (str[i])
 		{
 			k = 0;
-			if (!(tab = malloc(sizeof(char) * (word_len(str, i) + 1))))
+			if (!(tab[j] = malloc(sizeof(char) * (word_len(str, i) + 1))))
 				return (NULL);
 			while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 			{
 				tab[j][k++] = str[i++]; // segfault 
-				printf("d\n");
 			}
 			tab[j++][k] = '\0';
 		}
@@ -82,13 +81,12 @@ char 	**ft_split(char *str)
 int		main(void)
 {
 	int i = 0;
-	char str[] = "bonjour je m'appel Arthur";
-	char **tab = ft_split(str);
-
-	printf("a\n");
+	char **tab;
+		
+	tab = ft_split("bonjour je m'appel Arthur");
 	while (i < 4)
 	{
-		printf("string %d : %s", i, tab[i]);
+		printf("string %d : %s\n", i, tab[i]);
 		i++;
 	}
 	return (0);
